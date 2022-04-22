@@ -1,0 +1,52 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration {
+	/**
+	 * Run the migrations.
+	 *
+	 * @return void
+	 */
+	public function up()
+	{
+		Schema::table('users', function (Blueprint $table) {
+			$table->string('nif', 9)->nullable()->default(NULL);
+            $table->string('private_email', 255)->nullable()->default(NULL);
+			$table->string('phone', 16)->nullable()->default(NULL);
+			$table->foreignId('user_status_id')->nullable()->constrained();
+			$table->timestamp('has_accepted_terms_on')->nullable()->default(NULL);
+			$table->timestamp('account_deletion_request_on')->nullable()->default(NULL);
+			$table->timestamp('account_info_request_on')->nullable()->default(NULL);
+			$table->unsignedSmallInteger('troublemaking_score')->nullable()->default(0);
+			$table->boolean('is_locked')->nullable()->default(false);
+			$table->boolean('is_valid')->nullable()->default(false);
+			$table->foreignId('country_id')->nullable()->constrained();
+		});
+	}
+
+	/**
+	 * Reverse the migrations.
+	 *
+	 * @return void
+	 */
+	public function down()
+	{
+		Schema::table('users', function (Blueprint $table) {
+			$table->dropConstrainedForeignIdFor('user_status_id');
+			$table->dropConstrainedForeignIdFor('country_id');
+			$table->dropColumn('private_email');
+			$table->dropColumn('has_accepted_terms_on');
+			$table->dropColumn('account_deletion_request_on');
+			$table->dropColumn('account_info_request_on');
+			$table->dropColumn('troublemaking_score');
+			$table->dropColumn('is_locked');
+			$table->dropColumn('is_valid');
+			$table->dropColumn('nif');
+            $table->dropColumn('phone');
+		});
+	}
+};
+

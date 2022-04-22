@@ -1,0 +1,1 @@
+@extends('commons::components.edit')

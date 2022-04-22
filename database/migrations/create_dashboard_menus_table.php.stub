@@ -1,0 +1,44 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+return new class extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('dashboard_menus', function (Blueprint $table) {
+            $table->id();
+			$table->longText('label');
+	        $table->string('menu_code', '30')->default('dashboard-menu');
+	        $table->string('package', '30')->default('my-space');
+	        $table->string('route')->default('dashboard');
+	        $table->longText('params')->nullable();
+	        $table->string('is_active')->nullable()->default(TRUE);
+	        $table->string('class')->nullable()->default('dashboard-menu-link');
+            $table->nullableTimestamps();
+	        $table->softDeletes();
+        });
+		DB::table('dashboard_menu')->insert(
+			[
+				'label'  => '{"en":"Dashboard", "fr":"Tableau de bord", "pt":"Dashboard"}',
+			],
+		);
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('dashboard_menus');
+    }
+};
