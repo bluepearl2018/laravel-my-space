@@ -9,19 +9,18 @@ use Eutranet\MySpace\Models\MySpaceGeneralTerm;
 
 class DatabaseSeeder extends Seeder
 {
-	/**
-	 * Seed the application's database.
-	 *
-	 * @return void
-	 */
-	public function run()
-	{
-		Model::unguard();
+    /**
+     * Seed the application's database.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        Model::unguard();
 
-		DashboardMenu::factory(5)->create();
-		MySpaceGeneralTerm::factory(1)->create();
+        DashboardMenu::factory(5)->create();
+        MySpaceGeneralTerm::factory(1)->create();
 
-		Model::reguard();
-
-	}
+        Model::reguard();
+    }
 }

@@ -24,86 +24,82 @@ use Eutranet\MySpace\Notifications\GeneralTermsAcceptedNotification;
  */
 class UserGeneralTermController extends Controller
 {
+    /**
+     * Account controller functions are for Authenticated users.
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
-	/**
-	 * Account controller functions are for Authenticated users.
-	 */
-	public function __construct()
-	{
-		$this->middleware('auth');
-	}
+    /**
+     * Desactivate the user account.
+     *
+     * @param Request $request
+     * @param User $user
+     * @param GeneralTerm $generalTerm
+     * @return Application|Factory|RedirectResponse|View
+     */
+    public function readAndAcceptTerms(Request $request, User $user, GeneralTerm $generalTerm): View|Factory|RedirectResponse|Application
+    {
+        if ($request->method() === 'POST') {
+            if ($user->has_accepted_general_terms_on === false || $user->has_accepted_general_terms_on === null) {
+                $user = MySpaceUser::findOrFail(Auth::id());
+                $user->update(['has_accepted_general_terms_on' => Carbon::now()]);
+                Flash::success(__('Thanks for your confirmation.'));
+                $user->notify(new GeneralTermsAcceptedNotification($user, $generalTerm));
+                return redirect()->route('my-space.dashboard');
+            } else {
+                Flash::warning('You have already read and accepted our general terms');
+                return redirect()->route('my-space.dashboard');
+            }
+        } elseif ($request->method() === 'GET') {
+            $classLead = MySpaceGeneralTerm::getClassLead();
+            return view('my-space::general-terms.show', [
+                'classLead' => $classLead,
+                'generalTerm' => $generalTerm,
+                'infix' => '-my-space'
+            ]);
+        }
+        Flash::error('Whoops!');
+        return redirect()->route('my-space.dashboard');
+    }
 
-	/**
-	 * Desactivate the user account.
-	 *
-	 * @param Request $request
-	 * @param User $user
-	 * @param GeneralTerm $generalTerm
-	 * @return Application|Factory|RedirectResponse|View
-	 */
-	public function readAndAcceptTerms(Request $request, User $user, GeneralTerm $generalTerm): View|Factory|RedirectResponse|Application
-	{
-		if ($request->method() === 'POST') {
-			if ($user->has_accepted_general_terms_on === false || $user->has_accepted_general_terms_on === null) {
-				$user = MySpaceUser::findOrFail(Auth::id());
-				$user->update(['has_accepted_general_terms_on' => Carbon::now()]);
-				Flash::success(__('Thanks for your confirmation.'));
-				$user->notify(new GeneralTermsAcceptedNotification($user, $generalTerm));
-				return redirect()->route('my-space.dashboard');
-			} else {
-				Flash::warning('You have already read and accepted our general terms');
-				return redirect()->route('my-space.dashboard');
-			}
-		} elseif ($request->method() === 'GET') {
-			$classLead = MySpaceGeneralTerm::getClassLead();
-			return view('my-space::general-terms.show', [
-				'classLead' => $classLead,
-				'generalTerm' => $generalTerm,
-				'infix' => '-my-space'
-			]);
-		}
-		Flash::error('Whoops!');
-		return redirect()->route('my-space.dashboard');
-	}
+    /**
+     * Desactivate the user account.
+     *
+     * @param Request $request
+     * @param User $user
+     * @param MySpaceGeneralTerm $mySpaceGeneralTerm
+     * @return Application|Factory|RedirectResponse|View
+     */
+    public function readAndAcceptMySpaceGeneralTerms(Request $request, User $user, MySpaceGeneralTerm $mySpaceGeneralTerm): View|Factory|RedirectResponse|Application
+    {
+        // Retrieve the alias ... Eutranet\Corporate\Models\User as AccountUser
 
-	/**
-	 * Desactivate the user account.
-	 *
-	 * @param Request $request
-	 * @param User $user
-	 * @param MySpaceGeneralTerm $mySpaceGeneralTerm
-	 * @return Application|Factory|RedirectResponse|View
-	 */
-	public function readAndAcceptMySpaceGeneralTerms(
-		Request $request,
-		User $user,
-		MySpaceGeneralTerm $mySpaceGeneralTerm): View|Factory|RedirectResponse|Application
-	{
-		// Retrieve the alias ... Eutranet\Be\Models\User as AccountUser
-
-		if ($request->method() === 'POST') {
-			if ($user->has_accepted_my_space_general_terms_on === false || $user->has_accepted_my_space_general_terms_on === null) {
-				$user = MySpaceUser::findOrFail(Auth::id());
-				$user->update(['has_accepted_my_space_general_terms_on' => Carbon::now()]);
-				if($user->is_locked === 1){
-					$user->update(['is_locked' => false]);
-				};
-				Flash::success(__('Thanks for your confirmation.'));
-				$user->notify(new MySpaceGeneralTermAcceptedNotification($user, $mySpaceGeneralTerm));
-				return redirect()->route('my-space.dashboard');
-			} else {
-				Flash::warning('You have already read and accepted our general terms');
-				return redirect()->route('my-space.dashboard');
-			}
-		} elseif ($request->method() === 'GET') {
-			$classLead = MySpaceGeneralTerm::getClassLead();
-			return view('my-space::my-space-general-terms.show', [
-				'classLead' => $classLead,
-				'mySpaceGeneralTerm' => $mySpaceGeneralTerm,
-				'infix' => '-my-space'
-			]);
-		}
-		Flash::error('Whoops!');
-		return redirect()->route('my-space.dashboard');
-	}
+        if ($request->method() === 'POST') {
+            if ($user->has_accepted_my_space_general_terms_on === false || $user->has_accepted_my_space_general_terms_on === null) {
+                $user = MySpaceUser::findOrFail(Auth::id());
+                $user->update(['has_accepted_my_space_general_terms_on' => Carbon::now()]);
+                if ($user->is_locked === 1) {
+                    $user->update(['is_locked' => false]);
+                };
+                Flash::success(__('Thanks for your confirmation.'));
+                $user->notify(new MySpaceGeneralTermAcceptedNotification($user, $mySpaceGeneralTerm));
+                return redirect()->route('my-space.dashboard');
+            } else {
+                Flash::warning('You have already read and accepted our general terms');
+                return redirect()->route('my-space.dashboard');
+            }
+        } elseif ($request->method() === 'GET') {
+            $classLead = MySpaceGeneralTerm::getClassLead();
+            return view('my-space::my-space-general-terms.show', [
+                'classLead' => $classLead,
+                'mySpaceGeneralTerm' => $mySpaceGeneralTerm,
+                'infix' => '-my-space'
+            ]);
+        }
+        Flash::error('Whoops!');
+        return redirect()->route('my-space.dashboard');
+    }
 }

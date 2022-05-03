@@ -1,7 +1,7 @@
 @extends('my-space::layouts.master')
 @section('content')
     @auth
-        <x-theme::h1>{{__('Emails you have sent')}}</x-theme::h1>
+        <x-theme-h1>{{__('Emails you have sent')}}</x-theme-h1>
         <p class="mb-2 italic">{{__('The emails you have sent to our team are listed here.')}}</p>
         <div class="mb-4">
             @forelse(Auth::user()->emails->sortByDesc('created_at') as $email)

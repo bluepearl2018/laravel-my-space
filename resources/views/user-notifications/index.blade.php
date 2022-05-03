@@ -1,6 +1,6 @@
 @extends('my-space::layouts.master')
 @section('content')
-	<x-theme::h1>{{__('Notifications')}}</x-theme::h1>
+	<x-theme-h1>{{__('Notifications')}}</x-theme-h1>
 	<p class="mb-2 italic">{{__('List of unread user-notifications.')}}</p>
 	<div class="content-panel space-y-2">
 		@forelse($userNotifications as $notification)

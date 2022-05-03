@@ -25,11 +25,6 @@ return new class extends Migration
             $table->nullableTimestamps();
 	        $table->softDeletes();
         });
-		DB::table('dashboard_menu')->insert(
-			[
-				'label'  => '{"en":"Dashboard", "fr":"Tableau de bord", "pt":"Dashboard"}',
-			],
-		);
     }
 
     /**

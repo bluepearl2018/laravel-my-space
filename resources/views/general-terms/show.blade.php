@@ -1,15 +1,15 @@
 @extends('my-space::layouts.master')
 @section('content')
-	<x-theme::h1>
+	<x-theme-h1>
 		{{ $generalTerm->title }}
 		({{ __('General terms') }})
-	</x-theme::h1>
+	</x-theme-h1>
 	<p class="mb-2 italic">{{ $classLead }}</p>
 	<div class="content-panel flex flex-col space-y-3">
 		<div>
 			{{$generalTerm->lead }}
 		</div>
-		<x-theme::h2 class="mt-4">{{__('General terms')}}</x-theme::h2>
+		<x-theme-h2 class="mt-4">{{__('General terms')}}</x-theme-h2>
 		<div>
 			{{$generalTerm->body }}
 		</div>

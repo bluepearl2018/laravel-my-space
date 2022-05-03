@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedSmallInteger('troublemaking_score', 1)->default(0);
-            $table->timestamp('account_deletion_request_received_on', 1)->nullable()->default(NULL);
+            $table->unsignedSmallInteger('troublemaking_score')->nullable()->default(NULL);
+            $table->timestamp('account_deletion_request_received_on')->nullable()->default(NULL);
         });
     }
 
@@ -27,8 +27,8 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function(Blueprint $table){
-            $table->drop('troublemaking_score');
-            $table->drop('account_deletion_request_received_on');
+            $table->dropColumn('troublemaking_score');
+            $table->dropColumn('account_deletion_request_received_on');
         });
     }
 };

@@ -10,60 +10,60 @@ use Eutranet\MySpace\Models\MySpaceUser;
 
 class AccountDeletionWasRequestedNotification extends Notification implements ShouldQueue
 {
-	use Queueable;
+    use Queueable;
 
-	private MySpaceUser $user;
+    private MySpaceUser $user;
 
-	/**
-	 * Create a new notification instance.
-	 *
-	 * @return void
-	 */
-	public function __construct(MySpaceUser $user)
-	{
-		$this->user = $user;
-	}
+    /**
+     * Create a new notification instance.
+     *
+     * @return void
+     */
+    public function __construct(MySpaceUser $user)
+    {
+        $this->user = $user;
+    }
 
-	/**
-	 * Get the notification's delivery channels.
-	 *
-	 * @param mixed $notifiable
-	 * @return array
-	 */
-	public function via($notifiable): array
-	{
-		return ['mail', 'database'];
-	}
+    /**
+     * Get the notification's delivery channels.
+     *
+     * @param mixed $notifiable
+     * @return array
+     */
+    public function via($notifiable): array
+    {
+        return ['mail', 'database'];
+    }
 
-	/**
-	 * Get the mail representation of the notification.
-	 *
-	 * @param mixed $notifiable
-	 * @return MailMessage
-	 */
-	public function toMail($notifiable): MailMessage
-	{
-		// Instead of defining the "lines" of text in the notification class,
-		// you may use the view method to specify a custom template that should be used to
-		// render the notification email:
-		return (new MailMessage)
-			->view('my-space::mails.account-deletion-was-requested', [
-				'notifiable' => $notifiable,
-				'user' => $this->user
-			]);
-	}
+    /**
+     * Get the mail representation of the notification.
+     *
+     * @param mixed $notifiable
+     * @return MailMessage
+     */
+    public function toMail($notifiable): MailMessage
+    {
+        // Instead of defining the "lines" of text in the notification class,
+        // you may use the view method to specify a custom template that should be used to
+        // render the notification email:
+        return (new MailMessage())
+            ->view('my-space::mails.account-deletion-was-requested', [
+                'notifiable' => $notifiable,
+                'user' => $this->user
+            ]);
+    }
 
-	/**
-	 * Get the array representation of the notification.
-	 *
-	 * @param mixed $notifiable
-	 * @return array
-	 */
-	public function toArray($notifiable)
-	{
-		return [
-			'title' => __('We received your account deletion.'),
-			'user_id' => $this->user->id,
-		];
-	}
+    /**
+     * Get the array representation of the notification.
+     *
+     * @param mixed $notifiable
+     * @return array
+     */
+    public function toArray($notifiable)
+    {
+        return [
+            'title' => __('We received your account deletion.'),
+            'user_id' => $this->user->id,
+        ];
+    }
 }

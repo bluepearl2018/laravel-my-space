@@ -7,15 +7,13 @@ use Eutranet\MySpace\Models\UserSocialMedia;
 
 trait HasSocialMedias
 {
-
-	/**
-	 * Get the user social Medias
-	 *
-	 * @return MorphOne
-	 */
-	public function socialMedias(): MorphOne
-	{
-		return $this->morphOne(UserSocialMedia::class, 'socializable');
-	}
-
+    /**
+     * Get the user social Medias
+     *
+     * @return MorphOne
+     */
+    public function socialMedias(): MorphOne
+    {
+        return $this->morphOne(UserSocialMedia::class, 'socializable');
+    }
 }

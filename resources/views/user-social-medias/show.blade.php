@@ -2,15 +2,15 @@
 @section('content')
 	<div class="flex flex-col md:flex-row justify-between">
 		<div>
-			<x-theme::h1>
+			<x-theme-h1>
 				{{__('My social medias')}}
-			</x-theme::h1>
+			</x-theme-h1>
 			<p class="mb-2 italic">
 				{{ \Eutranet\MySpace\Models\UserSocialMedia::getClassLead() }}
 			</p>
 		</div>
 		<div class="items-center">
-			<a href="{{ route('my-space.user-social-medias.edit', [Auth::user(), $userSocialMedias->first()]) }}" class="btn-primary">
+			<a href="{{ route('my-space.user-social-medias.edit', [Auth::user(), $userSocialMedias]) }}" class="btn-primary">
 				{{ __('Edit') }}
 			</a>
 		</div>

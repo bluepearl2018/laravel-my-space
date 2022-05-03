@@ -1,15 +1,15 @@
 @extends('my-space::layouts.master')
 @section('content')
-	<x-theme::h1>
+	<x-theme-h1>
 		{{ $mySpaceGeneralTerm->title }}
 		({{ __('General terms') }})
-	</x-theme::h1>
+	</x-theme-h1>
 	<p class="mb-2 italic">{{ \Eutranet\MySpace\Models\MySpaceGeneralTerm::getClassLead() }}</p>
 	<div class="content-panel flex flex-col space-y-3">
 		<div>
 			{{$mySpaceGeneralTerm->lead }}
 		</div>
-		<x-theme::h2 class="mt-4">{{__('General terms')}}</x-theme::h2>
+		<x-theme-h2 class="mt-4">{{__('General terms')}}</x-theme-h2>
 		<div>
 			{{$mySpaceGeneralTerm->body }}
 		</div>

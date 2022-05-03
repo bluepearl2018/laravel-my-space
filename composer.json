@@ -7,10 +7,10 @@
     "psr-4": {
       "Eutranet\\MySpace\\Tests\\": "tests/",
       "Eutranet\\MySpace\\": "src/",
+      "Eutranet\\MySpace\\routes\\": "routes/",
       "Eutranet\\MySpace\\Database\\": "database/",
       "Eutranet\\MySpace\\Database\\Seeders\\": "database/seeders",
       "Eutranet\\MySpace\\Database\\Factories\\": "database/factories",
-      "Eutranet\\MySpace\\Events\\": "src/Events/",
       "Eutranet\\MySpace\\Models\\": "src/Models/",
       "Eutranet\\MySpace\\Http\\Controllers\\": "src/Http/Controllers/"
     }

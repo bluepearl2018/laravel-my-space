@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="h-full">
-@component('frontend::components.seo.meta')@endcomponent
+@component('theme::components.seo-meta')@endcomponent
 <body class="font-sans antialiased h-full">
 <div x-data="{ sidebarOpen: false, toggle() { this.sidebarOpen = ! this.sidebarOpen } }" class="max-w-7xl mx-auto">
 	<div
@@ -78,7 +78,6 @@
 			</div>
 			<div class="mt-5 flex-grow flex flex-col">
 				@include('my-space::components.nav.nav')
-				@include('my-space::components.nav.dashboard-menu')
 			</div>
 		</div>
 	</div>
@@ -158,13 +157,9 @@
 									role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button"
 									tabindex="-1">
 								<!-- Active: "bg-gray-100", Not Active: "" -->
-								<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
+								<a href="{{route('my-space.my-profile', Auth::user())}}" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
 								   tabindex="-1"
-								   id="user-menu-item-0">Your Profile</a>
-
-								<a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem"
-								   tabindex="-1"
-								   id="user-menu-item-1">Settings</a>
+								   id="user-menu-item-0">{{__('Your Profile')}}</a>
 
 								<form id="logout-frm" action="{{ route('logout') }}" method="post">
 									@csrf
@@ -181,7 +176,7 @@
 		</div>
 		{{-- Main content --}}
 		<main class="flex-1">
-			@include('theme::components.flash.message')
+			@include('theme::components.flash-message')
 			<div class="py-6 bg-gray-200">
 				<div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
 					<!-- Replace with your content -->

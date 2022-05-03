@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Facade;
 
 class DashboardMenuFacade extends Facade
 {
-	protected static function getFacadeAccessor()
-	{
-		return 'dashboard-menu';
-	}
+    protected static function getFacadeAccessor(): string
+    {
+        return 'dashboard-menu';
+    }
 }

@@ -15,20 +15,20 @@ use function view;
  */
 class UserDashboardController extends Controller
 {
-	/**
-	 * Access to user dashboard is granted to authenticated, verified users
-	 */
-	public function __construct()
-	{
-		$this->middleware(['auth']);
-	}
+    /**
+     * Access to user dashboard is granted to authenticated, verified users
+     */
+    public function __construct()
+    {
+        $this->middleware(['auth']);
+    }
 
-	/**
-	 * Get access to the dashbooard
-	 * @return Application|Factory|View
-	 */
-	public function index(): View|Factory|Application
-	{
-		return view('my-space::dashboard.index', ['user' => Auth::user()]);
-	}
+    /**
+     * Get access to the dashbooard
+     * @return Application|Factory|View
+     */
+    public function index(): View|Factory|Application
+    {
+        return view('my-space::dashboard.index', ['user' => Auth::user()]);
+    }
 }
