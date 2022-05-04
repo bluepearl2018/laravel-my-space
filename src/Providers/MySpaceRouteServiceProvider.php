@@ -2,9 +2,9 @@
 
 namespace Eutranet\MySpace\Providers;
 
-use Eutranet\Init\Providers\PackageMenuServiceProvider;
+use App\Providers\RouteServiceProvider;
 
-class MySpaceMenuServiceProvider extends PackageMenuServiceProvider
+class MySpaceRouteServiceProvider extends RouteServiceProvider
 {
     public function boot()
     {
