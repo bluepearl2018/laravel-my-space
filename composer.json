@@ -31,7 +31,6 @@
   "minimum-stability": "stable",
   "require-dev": {
     "ext-pdo": "*",
-    "laracasts/flash:": "*",
     "barryvdh/laravel-dompdf": "^1.0",
     "spatie/laravel-medialibrary": "^10.0",
     "spatie/laravel-permission": "^5.5",
