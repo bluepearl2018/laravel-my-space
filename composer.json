@@ -1,6 +1,6 @@
 {
   "name": "eutranet/laravel-my-space",
-  "description": "The frontend essentials for a Laravel 9 fresh install.",
+  "description": "My space",
   "type": "project",
   "license": "MIT",
   "autoload": {
