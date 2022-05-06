@@ -29,11 +29,7 @@ class PermissionSeeder extends Seeder
             // If the namespace is App\Models\Admin
             foreach ($guards as $guard) {
                 foreach ($cruds as $operation) {
-                    Permission::updateOrCreate(
-                        [
-                            'name' => $operation . '-' . Str::slug($tableName),
-                            'guard_name' => $guard
-                        ],
+                    Permission::firstOrCreate(
                         [
                             'name' => $operation . '-' . Str::slug($tableName),
                             'guard_name' => $guard

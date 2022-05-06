@@ -185,7 +185,7 @@
 				</div>
 			</div>
 		</main>
-		@include('theme::partials.footer')
+		@component('theme::partials.footer', ['model' => 'EutranetCorporateModelsCorporate'])@endcomponent
 	</div>
 </div>
 @stack('bottom-scripts')

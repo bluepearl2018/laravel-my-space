@@ -3,7 +3,7 @@
 	@auth
 		<x-theme-h1>{{__('Contact a staff member')}}</x-theme-h1>
 		<p class="mb-2 italic">{{__('Attach a PDF document if required.')}}</p>
-		<x-theme::forms.validation-errors></x-theme::forms.validation-errors>
+		<x-theme-form-validation-errors></x-theme-form-validation-errors>
 		<form id="send-email-frm" action="{{ route('my-space.emails.store', [Auth::user()]) }}" method="POST"
 			  enctype="multipart/form-data">
 			@csrf
@@ -18,7 +18,7 @@
 			@endforeach
 			<input type="hidden" name="user_id" value="{{Auth::id()}}"/>
 			<input type="hidden" name="from" value="{{Auth::user()->email}}"/>
-			<x-theme::forms.email-buttons form="{{ __('send-email-frm') }}"></x-theme::forms.email-buttons>
+			<x-theme-form-email-buttons form="{{ __('send-email-frm') }}"></x-theme-form-email-buttons>
 		</form>
 	@endauth
 @endsection
