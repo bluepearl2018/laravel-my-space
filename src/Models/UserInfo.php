@@ -206,16 +206,21 @@ class UserInfo extends Model
             array('group' => 'user-infos', 'key' => 'Address First Line', 'text' => '{"en":"Enter the address (first line)", "pt":"Indique a morada (primeira parte)"}'),
             array('group' => 'user-infos', 'key' => 'Address Second Line', 'text' => '{"en":"Enter the address (second line)", "pt":"Indique a morada (segunda parte)"}'),
         );
-
-        if (\Schema::hasTable('language_lines')) {
-            foreach ($lls as $ll) {
-                LanguageLine::firstOrCreate([
-                    'group' => $ll['group'],
-                    'key' => $ll['key'],
-                    'text' => json_decode($ll['text'], true)
-                ]);
-            }
-        }
+	    if (\Schema::hasTable('language_lines')) {
+		    foreach ($lls as $ll) {
+			    if(! \Eutranet\Commons\Models\LanguageLine::where([
+				    'group' => $ll['group'],
+				    'key' => $ll['key']
+			    ])->get()->first())
+			    {
+				    LanguageLine::create([
+					    'group' => $ll['group'],
+					    'key' => $ll['key'],
+					    'text' => json_decode($ll['text'], true)
+				    ]);
+			    };
+		    }
+	    }
     }
 
     /**

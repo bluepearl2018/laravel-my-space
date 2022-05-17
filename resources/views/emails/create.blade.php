@@ -23,6 +23,8 @@
 	@endauth
 @endsection
 @push('top-scripts')
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.min.js"></script>
+	<script src="//cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
 @endpush
 @push('bottom-scripts')
 	<script type="text/javascript">
