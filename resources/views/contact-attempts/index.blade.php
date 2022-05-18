@@ -2,7 +2,7 @@
 @section('content')
 	@auth
 		@if(isset($contactAttempts))
-		<x-theme-h1>{{__('Contact attempts')}}</x-theme-h1>
+		<x-theme-h1>{{__('contact-attempts.Contact attempts')}}</x-theme-h1>
 		<p class="mb-2 italic">{{__('When our staff tried to contact you.')}}</p>
 		<div class="content-panel">
 			@forelse($contactAttempts->sortByDesc('created_at') as $ca)

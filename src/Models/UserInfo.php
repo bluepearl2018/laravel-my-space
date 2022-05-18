@@ -115,7 +115,7 @@ class UserInfo extends Model
         static::saveTranslations();
 
         static::creating(function ($item) {
-            Flash::warning('Selected User : ' . $item->user->name . ' is being refreshed.');
+            Flash::warning('users.Selected User is being refreshed.');
             $user = User::findOrFail($item->user_id);
             Session::forget('users.selectedUser');
             Session::put('users.selectedUser', $user);
@@ -126,7 +126,7 @@ class UserInfo extends Model
         });
 
         static::updating(function ($item) {
-            Flash::warning('Selected User : ' . $item->user->name . ' is being refreshed.');
+            Flash::warning('users.Selected User is being refreshed.');
             $user = User::findOrFail($item->user_id);
             Session::forget('users.selectedUser');
             Session::put('users.selectedUser', $user);
@@ -137,7 +137,7 @@ class UserInfo extends Model
         });
 
         static::deleting(function ($item) {
-            Flash::warning('Selected User : ' . $item->user->name . ' is being refreshed.');
+            Flash::warning('users.Selected User is being refreshed.');
             $user = User::findOrFail($item->user_id);
             Session::forget('users.selectedUser');
             Session::put('users.selectedUser', $user);
@@ -239,7 +239,7 @@ class UserInfo extends Model
      */
     public static function getClassLead(): string
     {
-        return trans('The user info page is an extension of the user account.');
+        return trans('user-infos.The user info page extends the selected user\'s account.');
     }
 
     /**

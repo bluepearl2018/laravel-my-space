@@ -11,7 +11,7 @@
 		</div>
 		<div class="items-center">
 			<a href="{{ route('my-space.user-social-medias.edit', [Auth::user(), $userSocialMedias]) }}" class="btn-primary">
-				{{ __('Edit') }}
+				{{ __('labels.Edit') }}
 			</a>
 		</div>
 	</div>

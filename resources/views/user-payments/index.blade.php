@@ -14,7 +14,7 @@
 					</a>
 				</li>
 				@empty
-				{{ __('NOTHING TO SHOW') }}
+				{{ __('warnings.NOTHING TO SHOW') }}
 			@endforelse
 		</ul>
 	</div>

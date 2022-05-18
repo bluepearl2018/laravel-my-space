@@ -1,7 +1,7 @@
 @extends('my-space::layouts.master')
 @section('content')
 	<x-theme-h1>
-		{{ __('User agreements') }}
+		{{ __('User Agreements') }}
 	</x-theme-h1>
 	<p class="mb-2 italic">{{\Eutranet\MySpace\Models\Contractable::getClassLead()}}</p>
 	<div class="content-panel">

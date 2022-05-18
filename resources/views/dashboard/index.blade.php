@@ -60,7 +60,7 @@
 						<a href="{{route('my-space.contact-attempts.index', [Auth::user()])}}" class="focus:outline-none">
 							<!-- Extend touch target to entire panel -->
 							<span class="absolute inset-0" aria-hidden="true"></span>
-							{{__('Contact attempts')}}
+							{{__('contact-attempts.Contact attempts')}}
 						</a>
 					</x-theme-h1>
 					<p class="mt-2 text-sm text-gray-500">
@@ -84,7 +84,7 @@
 						<a href="{{route('my-space.consultations.index', [Auth::user()])}}" class="focus:outline-none">
 							<!-- Extend touch target to entire panel -->
 							<span class="absolute inset-0" aria-hidden="true"></span>
-							{{__('Consultations')}}
+							{{__('labels.Consultations')}}
 						</a>
 					</x-theme-h1>
 					<p class="mt-2 text-sm text-gray-500">

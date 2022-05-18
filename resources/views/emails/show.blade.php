@@ -17,7 +17,7 @@
                 {!! $email->message_body  !!}
             </div>
             @if($mediaItems->count() > 0)
-                <x-theme-h2>{{ __('Attachments') }} {{ '(PDF, PNG, JPEG)' }}</x-theme-h2>
+                <x-theme-h2>{{ __('labels.Attachments') }} {{ '(PDF, PNG, JPEG)' }}</x-theme-h2>
                 <p class="italic mb-2">{{ __('Ficheiros anexados não são descarregaveis.') }}</p>
                 @foreach($mediaItems as $mediaItem)
                     <span><i class="fa fa-download mr-2"></i>{{ $mediaItem->name }}</span>
